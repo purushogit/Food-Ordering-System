@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 08:40 PM
+-- Generation Time: Dec 22, 2020 at 07:35 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -50,11 +50,21 @@ INSERT INTO `category` (`categoryid`, `catname`) VALUES
 --
 
 CREATE TABLE `feedback` (
-  `purchaseid` int(10) UNSIGNED NOT NULL,
-  `customer` varchar(100) NOT NULL,
-  `dish` varchar(100) NOT NULL,
-  `feedback` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `purchaseid` int(11) NOT NULL,
+  `customer` varchar(50) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `dish` varchar(200) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `message` int(11) NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`purchaseid`, `customer`, `email`, `dish`, `phone`, `message`, `datetime`) VALUES
+(20, 'Manoj Babu GR', 'abc@gmail.com', 'Biryani', '9688888888', 9, '2020-12-22 11:38:15');
 
 -- --------------------------------------------------------
 
@@ -106,12 +116,9 @@ CREATE TABLE `purchase` (
 --
 
 INSERT INTO `purchase` (`purchaseid`, `customer`, `total`, `date_purchase`) VALUES
-(8, 'Manoj', 600, '2017-12-06 15:29:00'),
-(9, 'demo', 450, '2018-10-09 20:19:43'),
-(10, 'Manoj Babu GR', 620, '2020-12-21 19:36:01'),
-(12, 'Anusha S', 360, '2020-12-21 20:02:36'),
-(13, 'Devnath M', 0, '2020-12-21 22:37:51'),
-(14, 'Devnath M', 2000, '2020-12-21 22:38:01');
+(16, 'Affan', 600, '2020-12-22 11:29:40'),
+(17, 'Manoj Babu GR', 500, '2020-12-22 11:30:10'),
+(18, 'Jashwanth', 375, '2020-12-22 11:48:13');
 
 -- --------------------------------------------------------
 
@@ -138,7 +145,11 @@ INSERT INTO `purchase_detail` (`pdid`, `purchaseid`, `productid`, `quantity`) VA
 (17, 10, 15, 2),
 (18, 11, 15, 2),
 (19, 12, 16, 1),
-(20, 14, 27, 4);
+(20, 14, 27, 4),
+(21, 15, 26, 3),
+(22, 16, 22, 1),
+(23, 17, 19, 2),
+(24, 18, 21, 1);
 
 --
 -- Indexes for dumped tables
@@ -188,25 +199,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `purchaseid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `purchaseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchaseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `purchaseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `purchase_detail`
 --
 ALTER TABLE `purchase_detail`
-  MODIFY `pdid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `pdid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
